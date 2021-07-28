@@ -1,23 +1,11 @@
-const https = require('https');
+const fetch = require('node-fetch');
 
 let url = "https://covid19.th-stat.com/json/covid19v2/getTodayCases.json";
 
-https.get(url,(res) => {
-    let body = "";
+let settings = { method: "Get" };
 
-    res.on("data", (chunk) => {
-        body += chunk;
+fetch(url, settings)
+    .then(res => res.json())
+    .then((json) => {
+        // do something with JSON
     });
-
-    res.on("end", () => {
-        try {
-            let json = JSON.parse(body);
-            // do something with JSON
-        } catch (error) {
-            console.error(error.message);
-        };
-    });
-
-}).on("error", (error) => {
-    console.error(error.message);
-});
