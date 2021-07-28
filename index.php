@@ -2,13 +2,20 @@
 
 $url = "https://covid19.th-stat.com/json/covid19v2/getTodayCases.json";
 
-//call api
-$json = file_get_contents($url);
-$json = json_decode($json);
-$date = $json->results[0]->UpdateDate;
-$Confirm = $json->results[0]->Confirmed;
-echo "Update ล่าสุดเมื่อ: " . $Date . ", ติดเชื้อสะสม: " . $Confirm;
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_URL, $url);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-// output
-// Latitude: 40.6781784, Longitude: -73.9441579
+$headers = array(
+   "Accept: application/json",
+);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+//for debug only!
+curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
+$resp = curl_exec($curl);
+curl_close($curl);
+var_dump($resp);
+
 ?>
