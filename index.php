@@ -1,4 +1,9 @@
 <?php
-  $data_content =  file_get_contents("https://ddc.moph.go.th/covid19-dashboard/index.php?dashboard=province");
-  echo $data_content;
+  $site = 'https://ddc.moph.go.th/covid19-dashboard/index.php?dashboard=province';
+$homepage = file_get_contents($site);
+$filename = 'reviews.txt';
+$handle = fopen($filename,"w");
+fwrite($handle,$homepage);
+echo "Success";
+fclose($handle);
 ?>
