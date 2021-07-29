@@ -3,10 +3,17 @@
  <div id="output">hi</div>
 </body>
 <script>
-    var link='{"url":"https://covid19.th-stat.com/json/covid19v2/getTodayCases.json"}';
-    var jcontent= JSON.parse(link);
-    var output=document.getElementById('output');
-    output.innerHTML=jcontent.id + ' ';
+$.getJSON(https://covid19.th-stat.com/json/covid19v2/getTodayCases.json,
+function (data) {
+    var tr;
+    for (var i = 0; i < data.length; i++) {
+        tr = $('<tr/>');
+        tr.append("<td>" + data[i].UpdateDate + "</td>");
+        tr.append("<td>" + data[i].Deaths + "</td>");
+        tr.append("<td>" + data[i].NewDeaths + "</td>");
+        $('table').append(tr);
+    }
+});
 </script>
 
 </html>
