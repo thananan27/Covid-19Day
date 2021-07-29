@@ -1,8 +1,6 @@
 <?php
-    $url = "https://covid19.th-stat.com/json/covid19v2/getTodayCases.json";
-    $json = json_decode(file_get_contents($url), true);
-	$Date = $json["UpdateDate"];
-
-	
-echo $Date;
+$url = "http://urlToYourJsonFile.com";
+$json = file_get_contents($url);
+$json_data = json_decode($json, true);
+echo "My token: ". $json_data["access_token"];
 ?> 
